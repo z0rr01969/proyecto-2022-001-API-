@@ -12,8 +12,14 @@ const login = async (req, res) => {
     res.status(httpStatus).json(response);
 }
 
+// const info = async (req, res) => {
+//     const id = ""; //falta el id usuario
+//     const { response, httpStatus } = await infoUser(user); //infoUser se debe crear.
+//     res.status(httpStatus).json(response);
+// }
+
 const info = async (req, res) => {
-    const id = ""; //falta el id usuario
+    const {id} = req.payload; //despues de crear el middleware
     const { response, httpStatus } = await infoUser(user); //infoUser se debe crear.
     res.status(httpStatus).json(response);
 }
