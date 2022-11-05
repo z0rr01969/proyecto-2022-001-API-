@@ -26,9 +26,14 @@ const loginUser = async (userData) => {
       const match = await bcrypt.compare(userData.password, user.password);
       if (match) {
         // TODO: crear token
+        const payload = {
+          id: user._id,
+          name: user.name,
+        };
+        const token = jwt.sign(payload, "nbLvyh2vAGjL6KT52GXZ0iN7z0DP3M", { expiresIn: 60 });
         return {
           response: {
-            token: 'xxxxxyyyy'
+            token: token
           },
           httpStatus: 200
         }
