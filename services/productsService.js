@@ -1,32 +1,62 @@
-const productCategoryModel = require('../models/productCategoryModel');
+const ProductModel = require("../models/productModel");
+const ProductCategoryModel = require("../models/productCategoryModel");
 
-const getProducts = async (filter) => {
-  let query = {};
-  if (filter) query = { name: { $regex: filter, $options: 'i' } };
-  const products = await ShopModel.find(query);
-    return {
-        response: products,
-        httpStatus: 200
+const getProducts = async (shopId, filter) => {
+  const query = {
+    shop_id: shopId,
+  };
+  if (filter) query.name = { $regex: filter, $options: "i" };
+  /* query :
+    {
+      shop_id: "yyyy7883nkdkd",
+      name: /hueVos/i
     }
-}
+  */
+  const products = await ProductModel
+      .find(query)
+      .populate("shop_id", "name")
+      .populate("category_id", "name")
+      .exec();
+  return {
+    response: products,
+    httpStatus: products.length === 0 ? 404 : 200,
+  };
+};
 
 const createProduct = async (productData) => {
   try {
-    const product = ProductsModel(productData);
+    const product = ProductModel(productData);
     await product.save();
     return {
-        response: product,
-        httpStatus: 201
+      response: product,
+      httpStatus: 201,
     };
-} catch (error) {
-  return {
-    response: "server error",
-    httpStatus: 500
+  } catch (error) {
+    return {
+      response: "server error",
+      httpStatus: 500,
+    };
   }
-}
-}
+};
+
+const createProductCategory = async (productCategoryData) => {
+  try {
+    const productCategory = ProductCategoryModel(productCategoryData);
+    await productCategory.save();
+    return {
+      response: productCategory,
+      httpStatus: 201,
+    };
+  } catch (error) {
+    return {
+      response: "server error",
+      httpStatus: 500,
+    };
+  }
+};
 
 module.exports = {
-    createProduct,
-    getProducts
-}
+  getProducts,
+  createProduct,
+  createProductCategory,
+};
