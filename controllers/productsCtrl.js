@@ -6,9 +6,9 @@ const getAll = (req, res) => {
     res.status(httpStatus).json(response);
 }
 
-const create = (req, res) => {
+const create = async (req, res) => {
     const product = req.body;
-    const { response, httpStatus } = createProduct(product);
+    const { response, httpStatus } = await createProduct(product);
     res.status(httpStatus).json(response);
 }
  
