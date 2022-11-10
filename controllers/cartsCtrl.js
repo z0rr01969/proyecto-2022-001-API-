@@ -1,7 +1,7 @@
 const {
     getProductsCartUser,
     addProductCartUser,
-  } = require("./../services/cartsService");
+  } = require("../services/cartsService");
   
   const getProductsCart = async (req, res) => {
     const { id } = req.payload;

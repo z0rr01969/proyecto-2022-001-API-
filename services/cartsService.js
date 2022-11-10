@@ -1,6 +1,6 @@
-const CartModel = require("./../models/cartModel");
-const CartProductsModel = require("./../models/cartProductsModel");
-const ProductModel = require("./../models/productModel");
+const CartModel = require("../models/cartModel");
+const CartProductsModel = require("../models/cartProductsModel");
+const ProductModel = require("../models/productModel");
 
 const CART_STATUS = {
   ACTIVE: 1,
