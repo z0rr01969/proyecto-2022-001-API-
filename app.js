@@ -17,6 +17,9 @@ app.use('/products', productsRoutes);
 const usersRoutes = require('./routes/users');
 app.use('/users', usersRoutes);
 
+const cartRoutes = require('./routes/carts');
+app.use('/cart', cartRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
