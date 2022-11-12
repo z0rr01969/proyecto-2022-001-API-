@@ -17,3 +17,10 @@ const autVerify = (req, res, next) => {
 }
 
 module.exports = autVerify
+
+/*
+lo tenia como un objeto y debe ser una funcion.
+module.exports = {
+    autVerify,
+}
+*/
