@@ -16,6 +16,4 @@ const autVerify = (req, res, next) => {
     next ();
 }
 
-module.exports = {
-    autVerify,
-}
+module.exports = autVerify
